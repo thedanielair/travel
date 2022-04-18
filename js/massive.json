@@ -1,0 +1,26 @@
+[
+    {
+        "place": "italy",
+        "header": "The Grand Canal in Venice",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+        "img": "img/bg-1.jpg"
+    },
+    {
+        "place": "ireland",
+        "header": "Massive mountain in Ireland",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+        "img": "img/bg-2.jpg"
+    },
+    {
+        "place": "new york",
+        "header": "Busy street in New York",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+        "img": "img/bg-3.jpg"
+    },
+    {
+        "place": "forest",
+        "header": "Beautiful Forest",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+        "img": "img/bg-4.jpg"
+    }
+]

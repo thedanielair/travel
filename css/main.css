@@ -89,10 +89,6 @@ h6 {
 
 /*--------------------*/
 body {
-  background-image: url(../img/bg-1.jpg);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
   font-family: "Poppins", sans-serif;
   height: 100vh;
   overflow: hidden;
@@ -106,7 +102,7 @@ body {
 
 .header {
   position: relative;
-  z-index: 9;
+  z-index: 10;
 }
 
 .header__wrapper {
@@ -159,6 +155,7 @@ body {
 .title-info {
   height: 100%;
   position: relative;
+  z-index: 9;
 }
 
 .title-info__bg {
@@ -238,6 +235,7 @@ body {
 .footer {
   position: relative;
   bottom: 90px;
+  z-index: 9;
 }
 
 .footer__wrapper {
@@ -323,10 +321,19 @@ body {
 
 .title-slider {
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.title-slider__control {
+  position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   right: 11%;
+  z-index: 100;
 }
 
 .slider__control {
@@ -347,6 +354,12 @@ body {
   position: relative;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  z-index: 99;
 }
 
 .slider__control-pos::after {
@@ -367,9 +380,26 @@ body {
 
 .slider__control-pos--active {
   color: #fff;
+  cursor: inherit;
 }
 
 .slider__control-pos--active::after {
   width: 90px;
 }
-/*# sourceMappingURL=main.css.map */
+
+.slider__body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.slider__body img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+}
