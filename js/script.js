@@ -20,13 +20,14 @@ let massiveControl = [{
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
     img: "img/bg-4.jpg",
 }]
+const CONTROL_PLACE = document.querySelector(".slider__control");
+const PHOTO_PLACE = document.querySelector(".slider__body");
 //===================//
 
 
 
 //=====FUNCTIONS=====//
 function createControlPoses(massive, pos) {
-    let position = document.querySelector(pos);
     for (let i=0; i<massive.length; i++) {
         let pos = i+1;
         let controlPos = document.createElement('span');
@@ -40,15 +41,14 @@ function createControlPoses(massive, pos) {
             controlPos.classList.add('slider__control-pos--active');
         }
         massive[i].body = controlPos;
-        position.append(controlPos);
+        CONTROL_PLACE.append(controlPos);
     }
 }
 
-function createPh(i, massive, pos) {
-    let position = document.querySelector(pos)
+function createPh(i, massive) {
     let img = document.createElement('img');
     img.src = massive[i].img;
-    position.append(img);
+    PHOTO_PLACE.append(img);
 }
 
 function classToggle(item) {
@@ -62,19 +62,13 @@ function removeToogledPoses(arr) {
         }
     })
 }
-
-function connectPosesPhoto(posArr, phArr) {
-    posArr.forEach((item, i) => {
-        item.photo = phArr[i];
-    })
-}
 //===================//
 
 
 
 //=====MECHANISM=====//
-createControlPoses(massiveControl, ".slider__control");
-createPh(0, massiveControl, ".slider__body");
+createControlPoses(massiveControl);
+createPh(0, massiveControl);
 
 massiveControl.forEach((item, i) => {
     let controlPos = item.body;
