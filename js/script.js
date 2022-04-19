@@ -1,15 +1,33 @@
 //=====INDICATION=====//
-let sliderControlPosArr = [];
-let sliderControlPhotoArr = ["img/bg-1.jpg", "img/bg-2.jpg", "img/bg-3.jpg", "img/bg-4.jpg",];
-// import * as massive from "../js/massive.json"
+let massiveControl = [{
+    place: "italy",
+    header: "The Grand Canal in Venice",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+    img: "img/bg-1.jpg",
+},{
+    place: "ireland",
+    header: "Massive mountain in Ireland",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+    img: "img/bg-2.jpg",
+},{
+    place: "new york",
+    header: "Busy street in New York",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+    img: "img/bg-3.jpg",
+},{
+    place: "forest",
+    header: "Beautiful Forest",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+    img: "img/bg-4.jpg",
+}]
 //===================//
 
 
 
 //=====FUNCTIONS=====//
-function createControlPoses(posArr, phArr) {
-    let place = document.querySelector('.slider__control');
-    for (let i=0; i<phArr.length; i++) {
+function createControlPoses(massive, pos) {
+    let position = document.querySelector(pos);
+    for (let i=0; i<massive.length; i++) {
         let pos = i+1;
         let controlPos = document.createElement('span');
         if (pos<10) {
@@ -21,16 +39,16 @@ function createControlPoses(posArr, phArr) {
         if (pos === 1) {
             controlPos.classList.add('slider__control-pos--active');
         }
-        posArr.push(controlPos);
-        place.append(controlPos);
+        massive[i].body = controlPos;
+        position.append(controlPos);
     }
 }
 
-function createPh(i, phArr) {
-    let place = document.querySelector('.slider__body')
+function createPh(i, massive, pos) {
+    let position = document.querySelector(pos)
     let img = document.createElement('img');
-    img.src = phArr[i];
-    place.append(img);
+    img.src = massive[i].img;
+    position.append(img);
 }
 
 function classToggle(item) {
@@ -39,8 +57,8 @@ function classToggle(item) {
 
 function removeToogledPoses(arr) {
     arr.forEach((item) => {
-        if (item.classList.contains('slider__control-pos--active')) {
-            item.classList.remove('slider__control-pos--active');
+        if (item.body.classList.contains('slider__control-pos--active')) {
+            item.body.classList.remove('slider__control-pos--active');
         }
     })
 }
@@ -55,21 +73,18 @@ function connectPosesPhoto(posArr, phArr) {
 
 
 //=====MECHANISM=====//
-createControlPoses(sliderControlPosArr, sliderControlPhotoArr);
-createPh(1, sliderControlPhotoArr);
+createControlPoses(massiveControl, ".slider__control");
+createPh(0, massiveControl, ".slider__body");
 
-sliderControlPosArr.forEach((item, i) => {
-    item.addEventListener("click", () => {
-        removeToogledPoses(sliderControlPosArr);
-        classToggle(item);
+massiveControl.forEach((item, i) => {
+    let controlPos = item.body;
+    controlPos.addEventListener("click", () => {
+        removeToogledPoses(massiveControl);
+        classToggle(controlPos);
     }
     )
 })
 //===================//
 
-
-console.log(sliderControlPosArr);
-console.log(sliderControlPhotoArr.length);
-
-
+console.log(massiveControl);
 
