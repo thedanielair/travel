@@ -53,6 +53,7 @@ const CONTROL_PLACE = document.querySelector(".slider__control");
 const PHOTO_PLACE = document.querySelector(".slider__body");
 const LEFT_ARROW = document.querySelector('.arrows__left');
 const RIGHT_ARROW = document.querySelector('.arrows__right');
+const HAMBURGER_MENU = document.querySelector('.menu');
 const WINDOW__INNER_HEIGHT = window.innerHeight;
 console.log(WINDOW__INNER_HEIGHT);
 //===================//
@@ -222,6 +223,10 @@ RIGHT_ARROW.addEventListener("click", () => {
     if (!RIGHT_ARROW.classList.contains('arrows__arrow--inactive')) {
         isControlBlocked(activeElem + 1, activeElem, massiveControl[activeElem+1].body, 1000, massiveControl);
     } 
+})
+
+HAMBURGER_MENU.addEventListener("click", () => {
+    HAMBURGER_MENU.classList.toggle('menu--active');
 })
   
 //===============//

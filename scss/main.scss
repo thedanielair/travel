@@ -133,11 +133,105 @@ body {
 }
 
 .menu {
-  // .menu__button
+  width: 150px;
+  height: 150px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  &--active {
+    .menu__item {
+      transform: rotate(calc(-135deg / 3 * var(--i)));
+    }
+    .menu__button {
+      transform: rotate(-135deg);
+      &::before,
+      &::after {
+        background-color: #000;
+      }
+      &:hover {
+        &::before,
+        &::after {
+          background-color: #dead00;
+        }
+      }
+    }
+  }
   &__button {
-    width: 25px;
-    height: 25px;
+    width: 50px;
+    height: 50px;
     background: #fff;
+    border-radius: 50%;
+    z-index: 9;
+    position: relative;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      border-radius: 3px;
+      top: 47%;
+      left: 50%;
+      transform: translate(-50%);
+      width: 25px;
+      height: 3px;
+      transition: all 0.5s ease;
+      background-color: #dead00;
+    }
+    &::after {
+      transform: translate(-50%) rotate(90deg);
+    }
+  }
+
+  &__item {
+    font-family: "travel-font2";
+    font-size: 23px;
+    color: #000;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    transform-origin: 130px;
+    transition: all 0.5s ease;
+    transition-delay: calc(0.1s * var(--i));
+    transform: rotate(0deg) translateX(105px) translateY(5px);
+    z-index: 0;
+    cursor: pointer;
+    &::before {
+      transform: rotate(calc(135deg / 3 * var(--i)));
+      transition: color 0.3s ease;
+    }
+    &:hover {
+      &::before {
+        color: #dead00;
+      }
+    }
+  }
+
+  &__item-1 {
+    &::before {
+      padding-top: 3px;
+      content: "\e913";
+    }
+  }
+
+  &__item-2 {
+    &::before {
+      content: "\e914";
+    }
+  }
+
+  &__item-3 {
+    &::before {
+      content: "\e915";
+    }
   }
 }
 
@@ -227,29 +321,25 @@ body {
   background: #dead00;
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
   z-index: 0;
-  &:hover {
-    color: #000 !important;
-    background-color: #dead00;
-    text-shadow: none;
-  }
+  overflow: hidden;
   &::before {
     display: block;
     position: absolute;
-    left: 0px;
-    top: 0px;
+    left: 40%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     height: 0px;
-    width: 100%;
+    width: 0px;
+    border-radius: 50%;
     z-index: -1;
     content: "";
     color: #000;
     background: #ffffff;
-    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+    transition: all 0.8s ease;
   }
   &:hover::before {
-    bottom: 0%;
-    top: auto;
-    height: 100%;
+    width: 350px;
+    height: 350px;
   }
 }
 .footer {
