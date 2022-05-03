@@ -204,9 +204,12 @@ hideInactiveArrow(activeElem, LEFT_ARROW, RIGHT_ARROW, massiveControl);
 
 massiveControl.forEach((item, i) => {
     item.body.addEventListener("click", () => {
-        isControlBlocked(i, activeElem, item.body, 1000, massiveControl);
-    }
-    )
+        if (i===activeElem) {
+            //вот ты думаешь что я пишу говнокод но (!i===active) не работает и выдает false
+        } else {
+            isControlBlocked(i, activeElem, item.body, 1000, massiveControl);
+        }
+    });
 })
 
 LEFT_ARROW.addEventListener("click", () => {
@@ -229,4 +232,3 @@ console.log(massiveControl);
 
 //передавай в функциях стандартные значения массива
 //создай объект опцию для настройки
-//блок поставь чтобы чел не кликал на ту же цифру которая активная
