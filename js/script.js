@@ -53,7 +53,7 @@ const CONTROL_PLACE = document.querySelector(".slider__control");
 const PHOTO_PLACE = document.querySelector(".slider__body");
 const LEFT_ARROW = document.querySelector('.arrows__left');
 const RIGHT_ARROW = document.querySelector('.arrows__right');
-const HAMBURGER_MENU = document.querySelector('.menu');
+const HAMBURGER_MENU_ICON = document.querySelector('.menu__button');
 const WINDOW__INNER_HEIGHT = window.innerHeight;
 console.log(WINDOW__INNER_HEIGHT);
 //===================//
@@ -225,8 +225,8 @@ RIGHT_ARROW.addEventListener("click", () => {
     } 
 })
 
-HAMBURGER_MENU.addEventListener("click", () => {
-    HAMBURGER_MENU.classList.toggle('menu--active');
+HAMBURGER_MENU_ICON.addEventListener("click", () => {
+    HAMBURGER_MENU_ICON.parentElement.classList.toggle('menu--active');
 })
   
 //===============//

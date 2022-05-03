@@ -185,6 +185,28 @@ body {
     }
   }
 
+  &__item-1 {
+    --i: 0;
+    &::before {
+      padding-top: 3px;
+      content: "\e913";
+    }
+  }
+
+  &__item-2 {
+    --i: 1;
+    &::before {
+      content: "\e914";
+    }
+  }
+
+  &__item-3 {
+    --i: 2;
+    &::before {
+      content: "\e915";
+    }
+  }
+
   &__item {
     font-family: "travel-font2";
     font-size: 23px;
@@ -212,25 +234,6 @@ body {
       &::before {
         color: #dead00;
       }
-    }
-  }
-
-  &__item-1 {
-    &::before {
-      padding-top: 3px;
-      content: "\e913";
-    }
-  }
-
-  &__item-2 {
-    &::before {
-      content: "\e914";
-    }
-  }
-
-  &__item-3 {
-    &::before {
-      content: "\e915";
     }
   }
 }

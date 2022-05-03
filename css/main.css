@@ -212,6 +212,31 @@ body {
           transform: translate(-50%) rotate(90deg);
 }
 
+.menu__item-1 {
+  --i: 0;
+}
+
+.menu__item-1::before {
+  padding-top: 3px;
+  content: "\e913";
+}
+
+.menu__item-2 {
+  --i: 1;
+}
+
+.menu__item-2::before {
+  content: "\e914";
+}
+
+.menu__item-3 {
+  --i: 2;
+}
+
+.menu__item-3::before {
+  content: "\e915";
+}
+
 .menu__item {
   font-family: "travel-font2";
   font-size: 23px;
@@ -252,19 +277,6 @@ body {
 
 .menu__item:hover::before {
   color: #dead00;
-}
-
-.menu__item-1::before {
-  padding-top: 3px;
-  content: "\e913";
-}
-
-.menu__item-2::before {
-  content: "\e914";
-}
-
-.menu__item-3::before {
-  content: "\e915";
 }
 
 .title-info {
