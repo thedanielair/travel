@@ -1,24 +1,53 @@
 //=====INDICATION=====//
-let massiveControl = [{
-    place: "italy",
-    header: "The Grand Canal in Venice",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
-    img: "img/bg-1.jpg",
+let massiveControl = [
+//     {
+//     place: "italy",
+//     header: "The Grand Canal in Venice",
+//     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+//     img: "img/bg-1.jpg",
+// },{
+//     place: "ireland",
+//     header: "Massive mountain in Ireland",
+//     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+//     img: "img/bg-2.jpg",
+// },{
+//     place: "new york",
+//     header: "Busy street in New York",
+//     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+//     img: "img/bg-3.jpg",
+// },{
+//     place: "forest",
+//     header: "Beautiful Forest",
+//     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+//     img: "img/bg-4.jpg",
+// },
+{
+    place: "",
+    header: "",
+    text: "",
+    img: "img/bg-5.png",
 },{
-    place: "ireland",
-    header: "Massive mountain in Ireland",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
-    img: "img/bg-2.jpg",
-},{
-    place: "new york",
-    header: "Busy street in New York",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
-    img: "img/bg-3.jpg",
-},{
-    place: "forest",
-    header: "Beautiful Forest",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
-    img: "img/bg-4.jpg",
+    place: "",
+    header: "",
+    text: "",
+    img: "img/bg-6.png",}
+,{
+    place: "",
+    header: "",
+    text: "",
+    img: "img/bg-7.png",
+}
+,{
+    place: "",
+    header: "",
+    text: "",
+    img: "img/bg-8.png",
+}
+,{
+    place: "",
+    header: "",
+    text: "",
+   img: "img/bg-9.png",
 }]
 const CONTROL_PLACE = document.querySelector(".slider__control");
 const PHOTO_PLACE = document.querySelector(".slider__body");
@@ -130,17 +159,37 @@ function performAnimations(nextElem, currentElem, duration, massive) {
     activeElem = nextElem;
 }
 
-// function isControlBlocked(next, current, duration, massive) {
-//     if (!CONTROL_PLACE.classList.contains('slider__control--blocked')) {
-        
-//     }
-// }
+function isControlBlocked(nextIndex, currentIndex, controlPoint, duration, massive) {
+    if (!CONTROL_PLACE.classList.contains('slider__control--blocked')) {
+        removeToogledPoses(massive);
+        classToggle(controlPoint);
+        performAnimations(nextIndex, currentIndex, duration, massive);
+        blockControlPos(CONTROL_PLACE, duration + 500); 
+    }
+    hideInactiveArrow(activeElem, LEFT_ARROW, RIGHT_ARROW, massiveControl);
+}
 
 function blockControlPos(body, delay) {
     body.classList.add('slider__control--blocked');
     setTimeout(() => {
         body.classList.remove('slider__control--blocked');
     }, delay)
+}
+
+function hideInactiveArrow(currentIndex, leftArrow, rightArrow, massive) {
+    if (currentIndex === 0) {
+        leftArrow.classList.add('arrows__arrow--inactive');
+    }
+    if (currentIndex === massive.length-1) {
+        rightArrow.classList.add('arrows__arrow--inactive');
+    } 
+    if (currentIndex > 0) {
+        leftArrow.classList.remove('arrows__arrow--inactive');
+    }
+    if (currentIndex < massive.length-1) {
+            rightArrow.classList.remove('arrows__arrow--inactive');
+    } 
+    
 }
 
 //===================//
@@ -151,23 +200,33 @@ function blockControlPos(body, delay) {
 let activeElem = 0;
 createControlPoses(massiveControl);
 makeActiveControlElements(activeElem, massiveControl);
-
+hideInactiveArrow(activeElem, LEFT_ARROW, RIGHT_ARROW, massiveControl);
 
 massiveControl.forEach((item, i) => {
-    let controlPos = item.body;
-    controlPos.addEventListener("click", () => {
-        if (!CONTROL_PLACE.classList.contains('slider__control--blocked')) {
-            removeToogledPoses(massiveControl);
-            classToggle(controlPos);
-            performAnimations(i, activeElem, 1000, massiveControl);
-            blockControlPos(CONTROL_PLACE, 1500);
-        }
+    item.body.addEventListener("click", () => {
+        isControlBlocked(i, activeElem, item.body, 1000, massiveControl);
     }
     )
+})
+
+LEFT_ARROW.addEventListener("click", () => {
+    if (!LEFT_ARROW.classList.contains('arrows__arrow--inactive')) {
+        isControlBlocked(activeElem - 1, activeElem, massiveControl[activeElem-1].body, 1000, massiveControl);
+    }
+})
+
+RIGHT_ARROW.addEventListener("click", () => {
+    if (!RIGHT_ARROW.classList.contains('arrows__arrow--inactive')) {
+        isControlBlocked(activeElem + 1, activeElem, massiveControl[activeElem+1].body, 1000, massiveControl);
+    } 
 })
   
 //===============//
 
 console.log(massiveControl);
 
+//FIX
 
+//передавай в функциях стандартные значения массива
+//создай объект опцию для настройки
+//блок поставь чтобы чел не кликал на ту же цифру которая активная

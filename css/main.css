@@ -224,12 +224,47 @@ body {
 }
 
 .button {
-  display: inline-block;
+  display: block;
+  position: relative;
+  width: 275px;
+  height: 80px;
   padding: 30px 60px;
   font-weight: 700;
   font-size: 20px;
   color: #000;
   background: #dead00;
+  -webkit-transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  z-index: 0;
+}
+
+.button:hover {
+  color: #000 !important;
+  background-color: #dead00;
+  text-shadow: none;
+}
+
+.button::before {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  content: "";
+  color: #000;
+  background: #ffffff;
+  -webkit-transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  -webkit-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+          box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+
+.button:hover::before {
+  bottom: 0%;
+  top: auto;
+  height: 100%;
 }
 
 .footer {
@@ -261,33 +296,90 @@ body {
 
 .media-block > a {
   display: block;
+  position: relative;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0);
+  width: 35px;
+  height: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-right: 25px;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.media-block > a::before, .media-block > a::after {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .media-block > a::before {
   font-family: "travel-font";
   color: #fff;
   font-size: 20px;
+  z-index: 10;
+}
+
+.media-block > a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 50%;
 }
 
 .media-block > a:last-child {
   margin-right: 0;
 }
 
+.media-block > a:hover::after {
+  width: 35px;
+  height: 35px;
+}
+
 .media-block__facebook::before {
   content: "\e902";
+}
+
+.media-block__facebook:hover::before {
+  color: #000caf;
 }
 
 .media-block__instagram::before {
   content: "\e903";
 }
 
+.media-block__instagram:hover::before {
+  color: #883a16;
+}
+
 .media-block__vk::before {
   content: "\e900";
 }
 
+.media-block__vk:hover::before {
+  color: #4d56ca;
+}
+
 .media-block__youtube::before {
   content: "\e901";
+}
+
+.media-block__youtube:hover::before {
+  color: crimson;
 }
 
 .arrows {
@@ -296,19 +388,32 @@ body {
   display: flex;
 }
 
-.arrows > span {
+.arrows__arrow {
   display: block;
   margin-right: 20px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.arrows > span::before {
+.arrows__arrow::before {
   font-family: "travel-font";
   color: #fff;
   font-size: 20px;
+  cursor: pointer;
 }
 
-.arrows > span:last-child {
+.arrows__arrow:last-child {
   margin-right: 0;
+}
+
+.arrows__arrow:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.arrows__arrow:active {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
 }
 
 .arrows__left::before {
@@ -317,6 +422,16 @@ body {
 
 .arrows__right::before {
   content: "\e906";
+}
+
+.arrows__arrow--inactive::before {
+  color: rgba(255, 255, 255, 0.5);
+  cursor: default;
+}
+
+.arrows__arrow--inactive:hover {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
 }
 
 .title-slider {
@@ -352,8 +467,8 @@ body {
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 35px;
   position: relative;
-  -webkit-transition: color 0.3s ease;
-  transition: color 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -362,10 +477,15 @@ body {
   z-index: 99;
 }
 
+.slider__control-pos:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
 .slider__control-pos::after {
   width: 0;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
   -webkit-transform-origin: left center;
           transform-origin: left center;
   position: absolute;
@@ -385,6 +505,11 @@ body {
 
 .slider__control-pos--active::after {
   width: 90px;
+}
+
+.slider__control-pos--active:hover {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
 }
 
 .slider__body {

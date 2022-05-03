@@ -216,12 +216,41 @@ body {
   color: #ffffff;
 }
 .button {
-  display: inline-block;
+  display: block;
+  position: relative;
+  width: 275px;
+  height: 80px;
   padding: $defaultOffset * 6 $defaultOffset * 12;
   font-weight: 700;
   font-size: $defaultOffset * 4;
   color: #000;
   background: #dead00;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  z-index: 0;
+  &:hover {
+    color: #000 !important;
+    background-color: #dead00;
+    text-shadow: none;
+  }
+  &::before {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 0px;
+    width: 100%;
+    z-index: -1;
+    content: "";
+    color: #000;
+    background: #ffffff;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+  }
+  &:hover::before {
+    bottom: 0%;
+    top: auto;
+    height: 100%;
+  }
 }
 .footer {
   position: relative;
@@ -253,20 +282,57 @@ body {
   align-items: center;
   & > a {
     display: block;
+    position: relative;
+    &::before,
+    &::after {
+      transition: all 0.5s ease;
+    }
     &::before {
       font-family: "travel-font";
       color: #fff;
       font-size: $defaultOffset * 4;
+      z-index: 10;
     }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-right: $defaultOffset * 5;
+    transition: all 1s ease;
     &:last-child {
       margin-right: 0;
+    }
+    &:hover {
+      &::after {
+        width: 35px;
+        height: 35px;
+      }
     }
   }
   // .media-block__facebook
   &__facebook {
     &::before {
       content: "\e902";
+    }
+    &:hover {
+      &::before {
+        color: rgb(0, 12, 175);
+      }
     }
   }
 
@@ -275,12 +341,22 @@ body {
     &::before {
       content: "\e903";
     }
+    &:hover {
+      &::before {
+        color: rgb(136, 58, 22);
+      }
+    }
   }
 
   // .media-block__vk
   &__vk {
     &::before {
       content: "\e900";
+    }
+    &:hover {
+      &::before {
+        color: rgb(77, 86, 202);
+      }
     }
   }
 
@@ -289,23 +365,45 @@ body {
     &::before {
       content: "\e901";
     }
+    &:hover {
+      &::before {
+        color: rgb(220, 20, 60);
+      }
+    }
   }
 }
 
 .arrows {
   display: flex;
-  & > span {
+
+  // .arrows__arrow
+  &__arrow {
     display: block;
     margin-right: $defaultOffset * 4;
+    transition: all 0.3s ease;
     &::before {
       font-family: "travel-font";
       color: #fff;
       font-size: $defaultOffset * 4;
+      cursor: pointer;
     }
     &:last-child {
       margin-right: 0;
     }
+    &:hover {
+      transform: translateY(-2px);
+    }
+    &:active {
+      transform: translateY(0px);
+    }
+    // &:not(.arrows__arrow--inactive) {
+    //   .arrows__arrow:hover {
+    //     transform: translateY(-2px);
+    //     text-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    //   }
+    // }
   }
+
   // .arrows__left
   &__left {
     &::before {
@@ -317,6 +415,17 @@ body {
   &__right {
     &::before {
       content: "\e906";
+    }
+  }
+
+  // .arrows__arrow--inactive
+  &__arrow--inactive {
+    &::before {
+      color: rgba(255, 255, 255, 0.5);
+      cursor: default;
+    }
+    &:hover {
+      transform: translateY(0px);
     }
   }
 }
@@ -350,13 +459,16 @@ body {
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: $defaultOffset * 7;
     position: relative;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
     user-select: none;
     z-index: 99;
+    &:hover {
+      transform: translateY(-2px);
+    }
     &::after {
       width: 0;
-      transition: all 0.3s ease;
+      transition: all 1s ease;
       transform-origin: left center;
       position: absolute;
       left: $defaultOffset * 5;
@@ -372,6 +484,9 @@ body {
       cursor: inherit;
       &::after {
         width: $defaultOffset * 18;
+      }
+      &:hover {
+        transform: translateY(0px);
       }
     }
   }
