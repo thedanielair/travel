@@ -45,16 +45,9 @@
       </div>
     </section>
     <div class="title-slider slider">
-      <div class="title-slider__control slider__control">
-        <!-- <span class="slider__control-pos slider__control-pos--active">
-          01
-        </span>
-        <span class="slider__control-pos"> 02 </span>
-        <span class="slider__control-pos"> 03 </span>
-        <span class="slider__control-pos"> 04 </span> -->
-      </div>
+      <div class="title-slider__control slider__control"></div>
       <div class="slider__body">
-        <!-- <img src="img/bg-1.jpg" alt="" /> -->
+        <div class="slider__list"></div>
       </div>
     </div>
     <footer class="footer">
@@ -88,5 +81,16 @@
       </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/slider.js"></script>
+    <script>
+      const options = {
+        massive: massiveControl,
+        direction: "vertical",
+        duration: 1000,
+        actualIndex: 0,
+      };
+      const slider = new SliderMech(options);
+      slider.init();
+    </script>
   </body>
 </html>

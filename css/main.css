@@ -641,10 +641,11 @@ body {
   bottom: 0;
   left: 0;
   z-index: -1;
+  overflow: hidden;
 }
 
-.slider__body img {
-  position: relative;
+.slider__list img {
+  position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
